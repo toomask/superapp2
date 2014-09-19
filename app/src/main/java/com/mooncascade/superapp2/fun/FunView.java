@@ -40,14 +40,25 @@ public class FunView extends View implements BitmapCameraFeed.FrameReceiver {
 
     BitmapCameraFeed cameraFeed;
 
+    Bitmap renderBitmap;
+    Canvas renderCanvas;
+    ArrayList<Bitmap> gifFrames;
+
+    Bitmap overlayBitmap;
+    Canvas overlayCanvas;
+
     private void init() {
         cameraFeed = new BitmapCameraFeed(getContext(), this);
 
         renderBitmap = Bitmap.createBitmap(
                 CameraFeed.PIC_WIDTH, CameraFeed.PIC_HEIGHT,
                 Bitmap.Config.ARGB_4444);
-
         renderCanvas = new Canvas(renderBitmap);
+
+        overlayBitmap = Bitmap.createBitmap(
+                CameraFeed.PIC_WIDTH, CameraFeed.PIC_HEIGHT,
+                Bitmap.Config.ARGB_4444);
+        overlayCanvas = new Canvas(overlayBitmap);
     }
 
     @Override
@@ -62,40 +73,54 @@ public class FunView extends View implements BitmapCameraFeed.FrameReceiver {
         cameraFeed.stopCamera();
     }
 
-    Bitmap renderBitmap;
-    Canvas renderCanvas;
-    ArrayList<Bitmap> bitmaps;
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            bitmaps = new ArrayList<Bitmap>();
+            gifFrames = new ArrayList<Bitmap>();
         } else if (event.getAction() == MotionEvent.ACTION_CANCEL
                 || event.getAction() == MotionEvent.ACTION_UP) {
+            encodeGifAndUpload();
+            gifFrames = null;
+        }
 
-            Uploader.upload( new ByteArrayInputStream( Gif.encodeGif(bitmaps) ) );
-
-            bitmaps = null;
+        Paint overlayPain = new Paint();
+        overlayPain.setColor(ColorFun.randomColor());
+        for (int i = 0; i < event.getPointerCount(); i++) {
+            overlayCanvas.drawCircle(
+                    calculateXPositionOnOverlayBitmap(event.getX(i)),
+                    calculateYPositionOnOverlayBitmap(event.getY(i)),
+                    20.0f,
+                    overlayPain
+            );
         }
 
         return true;
     }
 
+    private float calculateXPositionOnOverlayBitmap(float motionEventX) {
+        return motionEventX * CameraFeed.PIC_WIDTH / getWidth();
+    }
+
+    private float calculateYPositionOnOverlayBitmap(float motionEventY) {
+        return motionEventY * CameraFeed.PIC_HEIGHT / getHeight();
+    }
+
+    private void encodeGifAndUpload() {
+        Uploader.upload(new ByteArrayInputStream(Gif.encodeGif(gifFrames)));
+    }
+
     @Override
     public void onFrame(Bitmap frame) {
-        if (bitmaps != null) {
-            bitmaps.add(frame);
-        }
-
 
         Paint paint = new Paint();
-        paint.setAlpha(50);
+//        paint.setAlpha(200);
         renderCanvas.drawBitmap(frame, 0, 0, paint);
 
-        paint.setColor(ColorFun.randomColor());
-        paint.setAlpha(50);
+        renderCanvas.drawBitmap(overlayBitmap, 0, 0, paint);
 
-        renderCanvas.drawRect(0, 0, CameraFeed.PIC_WIDTH, CameraFeed.PIC_HEIGHT, paint);
+        if (gifFrames != null) {
+            gifFrames.add(renderBitmap.copy(Bitmap.Config.ARGB_4444, false));
+        }
 
         invalidate();
     }
@@ -105,17 +130,17 @@ public class FunView extends View implements BitmapCameraFeed.FrameReceiver {
         super.onDraw(canvas);
         try {
             Paint paint = new Paint();
-       //     paint.setAlpha(1);
+
             canvas.drawBitmap(renderBitmap,
                     new Rect(0, 0, CameraFeed.PIC_WIDTH, CameraFeed.PIC_HEIGHT),
                     new Rect(0, 0, getWidth(), getHeight()),
                     paint);
+
         } catch (Exception e) {
             Paint paint = new Paint();
             paint.setColor(Color.parseColor("#CC0066"));
             canvas.drawText(e.toString(), 0, 0, paint);
         }
-
     }
 
 }
