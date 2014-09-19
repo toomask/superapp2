@@ -1,4 +1,4 @@
-package com.mooncascade.superapp2.fun;
+package com.mooncascade.superapp2.util;
 
 import android.graphics.Color;
 

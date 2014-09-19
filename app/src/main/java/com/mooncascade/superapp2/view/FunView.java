@@ -1,4 +1,4 @@
-package com.mooncascade.superapp2.fun;
+package com.mooncascade.superapp2.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,7 @@ import android.view.View;
 import com.mooncascade.superapp2.camera.BitmapCameraFeed;
 import com.mooncascade.superapp2.camera.CameraFeed;
 import com.mooncascade.superapp2.gif.Gif;
+import com.mooncascade.superapp2.util.ColorFun;
 import com.mooncascade.superapp2.util.Uploader;
 
 import java.util.ArrayList;

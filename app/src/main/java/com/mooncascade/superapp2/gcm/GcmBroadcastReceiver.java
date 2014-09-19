@@ -1,4 +1,4 @@
-package com.mooncascade.superapp2;
+package com.mooncascade.superapp2.gcm;
 
 import android.app.Activity;
 import android.content.ComponentName;

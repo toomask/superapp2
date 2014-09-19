@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.mooncascade.superapp2.R;
-import com.mooncascade.superapp2.util.GcmRegistrator;
+import com.mooncascade.superapp2.gcm.GcmRegistrator;
 
 /**
  * Created by toomas on 18.09.2014.

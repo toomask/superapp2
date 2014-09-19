@@ -1,4 +1,4 @@
-package com.mooncascade.superapp2;
+package com.mooncascade.superapp2.gcm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -13,6 +13,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.mooncascade.superapp2.R;
 
 /**
  * Created by toomas on 18.09.2014.

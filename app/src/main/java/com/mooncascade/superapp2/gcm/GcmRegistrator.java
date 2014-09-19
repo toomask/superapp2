@@ -1,4 +1,4 @@
-package com.mooncascade.superapp2.util;
+package com.mooncascade.superapp2.gcm;
 
 import android.content.Context;
 import android.content.SharedPreferences;
