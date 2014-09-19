@@ -13,7 +13,6 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.mooncascade.superapp2.R;
-import com.mooncascade.superapp2.view.GifViewerView;
 
 /**
  * Created by toomas on 18.09.2014.
@@ -97,7 +96,5 @@ public class GcmIntentService extends IntentService {
         }
 
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
-
-        GifViewerView.create(this);
     }
 }
