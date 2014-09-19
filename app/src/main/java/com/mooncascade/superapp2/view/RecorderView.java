@@ -21,19 +21,19 @@ import java.util.ArrayList;
 /**
  * Created by toomas on 18.09.2014.
  */
-public class FunView extends View implements BitmapCameraFeed.FrameReceiver {
+public class RecorderView extends View implements BitmapCameraFeed.FrameReceiver {
 
-    public FunView(Context context) {
+    public RecorderView(Context context) {
         super(context);
         init();
     }
 
-    public FunView(Context context, AttributeSet attrs) {
+    public RecorderView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public FunView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RecorderView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -61,15 +61,11 @@ public class FunView extends View implements BitmapCameraFeed.FrameReceiver {
         overlayCanvas = new Canvas(overlayBitmap);
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    public void startCamera() {
         cameraFeed.startCamera();
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    public void stopCamera() {
         cameraFeed.stopCamera();
     }
 
