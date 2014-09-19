@@ -1,0 +1,38 @@
+
+Keystore type: JKS
+Keystore provider: SUN
+
+Your keystore contains 1 entry
+
+Alias name: super app 2
+Creation date: 18.09.2014
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: CN=Toomas K
+Issuer: CN=Toomas K
+Serial number: 39e055d3
+Valid from: Thu Sep 18 20:15:59 EEST 2014 until: Mon Sep 12 20:15:59 EEST 2039
+Certificate fingerprints:
+	 MD5:  CC:F7:B8:E8:71:96:E8:30:30:BD:EB:A6:D4:22:F8:9E
+	 SHA1: 00:33:70:5C:41:EB:CC:6A:01:E1:01:04:BA:DC:13:1D:97:95:FB:43
+	 SHA256: D9:0E:32:07:05:9C:0E:5C:22:BE:8F:F2:DD:EF:C8:CA:12:F8:EB:78:59:12:AB:25:9C:50:26:1D:90:A7:5F:A8
+	 Signature algorithm name: SHA256withRSA
+	 Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 9D 25 B6 E4 B6 CD C5 F7   91 54 63 4E A1 45 7F D8  .%.......TcN.E..
+0010: 12 CA 60 F3                                        ..`.
+]
+]
+
+
+
+*******************************************
+*******************************************
+
+
