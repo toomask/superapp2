@@ -1,11 +1,16 @@
-package com.mooncascade.superapp2.network_stuffs;
+package com.mooncascade.superapp2.util;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Uploader {
+
+    public static void upload(byte[] bytes) {
+        upload(new ByteArrayInputStream(bytes));
+    }
 
     public static void upload(final InputStream inputStream) {
         new Thread(new Runnable() {

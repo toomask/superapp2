@@ -13,9 +13,8 @@ import android.view.View;
 import com.mooncascade.superapp2.camera.BitmapCameraFeed;
 import com.mooncascade.superapp2.camera.CameraFeed;
 import com.mooncascade.superapp2.gif.Gif;
-import com.mooncascade.superapp2.network_stuffs.Uploader;
+import com.mooncascade.superapp2.util.Uploader;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 /**
@@ -106,7 +105,7 @@ public class FunView extends View implements BitmapCameraFeed.FrameReceiver {
     }
 
     private void encodeGifAndUpload() {
-        Uploader.upload(new ByteArrayInputStream(Gif.encodeGif(gifFrames)));
+        Uploader.upload( Gif.encodeGif(gifFrames) );
     }
 
     @Override
